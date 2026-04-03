@@ -120,7 +120,7 @@
       font-size: 0.8rem; color: var(--muted);
       letter-spacing: 0.04em; min-height: 1.2em; transition: color 0.3s;
     }
-    #status.live { color: #a78bff; }
+    #status.live  { color: #a78bff; }
     #status.error { color: #ff6b6b; }
 
     .wave { display: none; gap: 4px; align-items: flex-end; justify-content: center; height: 24px; margin-top: 1rem; }
@@ -164,12 +164,12 @@
       <span></span><span></span><span></span><span></span><span></span>
     </div>
 
-    <span id="status">Loading...</span>
+    <span id="status">Loading SDK...</span>
     <p class="footer-note">Powered by Vapi AI · Built by Abhijeet</p>
   </div>
 
-  <!-- Load Vapi SDK via unpkg (more reliable) -->
-  <script src="https://unpkg.com/@vapi-ai/web@latest/dist/vapi.js"></script>
+  <!-- ✅ Correct UMD bundle — exposes Vapi as a global class -->
+  <script src="https://cdn.jsdelivr.net/gh/balacodeio/Vapi-Web-UMD@latest/dist/latest/vapi-web-bundle.min.js"></script>
 
   <script>
     var VAPI_PUBLIC_KEY = "701c97bc-a3c4-4aef-bd98-1ddf2682386e";
@@ -187,7 +187,7 @@
     window.addEventListener('load', function () {
       try {
         if (typeof Vapi === 'undefined') {
-          setStatus('SDK unavailable. Please refresh.', 'error');
+          setStatus('SDK failed to load. Please refresh.', 'error');
           return;
         }
         vapi = new Vapi(VAPI_PUBLIC_KEY);
@@ -202,7 +202,7 @@
         });
       } catch(err) {
         console.error(err);
-        setStatus('Initialisation failed: ' + err.message, 'error');
+        setStatus('Error: ' + err.message, 'error');
       }
     });
 
