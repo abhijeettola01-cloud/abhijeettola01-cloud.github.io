@@ -61,14 +61,11 @@
     }
 
     .avatar-ring {
-      width: 80px;
-      height: 80px;
+      width: 80px; height: 80px;
       margin: 0 auto 1.5rem;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       font-size: 2rem;
       box-shadow: 0 0 30px var(--glow);
       animation: pulse-ring 3s ease-in-out infinite;
@@ -81,62 +78,27 @@
 
     h1 {
       font-family: 'Syne', sans-serif;
-      font-size: 1.55rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.5rem;
+      font-size: 1.55rem; font-weight: 800;
+      letter-spacing: -0.02em; margin-bottom: 0.5rem;
       background: linear-gradient(90deg, var(--text) 30%, var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
-    p {
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.6;
-      margin-bottom: 2rem;
-    }
+    p { color: var(--muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 2rem; }
 
     #vapi-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.85rem 2rem;
-      border-radius: 50px;
-      border: none;
-      cursor: pointer;
-      font-family: 'Syne', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 0.01em;
-      color: #fff;
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.85rem 2rem; border-radius: 50px; border: none;
+      cursor: pointer; font-family: 'Syne', sans-serif;
+      font-size: 1rem; font-weight: 700; color: #fff;
       background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
       box-shadow: 0 4px 24px var(--glow);
       transition: transform 0.18s ease, box-shadow 0.18s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    #vapi-btn::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent);
-      opacity: 0;
-      transition: opacity 0.2s;
     }
 
     #vapi-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 36px var(--glow); }
-    #vapi-btn:hover::before { opacity: 1; }
     #vapi-btn:active { transform: translateY(0); }
-
-    #vapi-btn .mic-icon {
-      width: 20px; height: 20px;
-      fill: none; stroke: #fff; stroke-width: 2;
-      stroke-linecap: round; stroke-linejoin: round;
-    }
-
     #vapi-btn.active {
       background: linear-gradient(135deg, #e05cff 0%, #7c6dfa 100%);
       animation: btn-pulse 1.2s ease-in-out infinite;
@@ -147,56 +109,44 @@
       50%       { box-shadow: 0 4px 48px rgba(224,92,255,0.55); }
     }
 
+    #vapi-btn .mic-icon {
+      width: 20px; height: 20px;
+      fill: none; stroke: #fff; stroke-width: 2;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+
     #status {
-      display: block;
-      margin-top: 1.2rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-      letter-spacing: 0.04em;
-      min-height: 1.2em;
-      transition: color 0.3s;
+      display: block; margin-top: 1.2rem;
+      font-size: 0.8rem; color: var(--muted);
+      letter-spacing: 0.04em; min-height: 1.2em; transition: color 0.3s;
     }
-
     #status.live { color: #a78bff; }
+    #status.error { color: #ff6b6b; }
 
-    .wave {
-      display: none;
-      gap: 4px;
-      align-items: flex-end;
-      justify-content: center;
-      height: 24px;
-      margin-top: 1rem;
-    }
+    .wave { display: none; gap: 4px; align-items: flex-end; justify-content: center; height: 24px; margin-top: 1rem; }
     .wave.visible { display: flex; }
     .wave span {
-      display: block;
-      width: 4px;
-      border-radius: 2px;
+      display: block; width: 4px; border-radius: 2px;
       background: linear-gradient(to top, var(--accent), var(--accent2));
       animation: bar 0.9s ease-in-out infinite;
     }
-    .wave span:nth-child(1) { height: 8px;  animation-delay: 0s;    }
+    .wave span:nth-child(1) { height: 8px;  animation-delay: 0s; }
     .wave span:nth-child(2) { height: 16px; animation-delay: 0.15s; }
-    .wave span:nth-child(3) { height: 22px; animation-delay: 0.3s;  }
+    .wave span:nth-child(3) { height: 22px; animation-delay: 0.3s; }
     .wave span:nth-child(4) { height: 16px; animation-delay: 0.45s; }
-    .wave span:nth-child(5) { height: 8px;  animation-delay: 0.6s;  }
+    .wave span:nth-child(5) { height: 8px;  animation-delay: 0.6s; }
 
     @keyframes bar {
       0%, 100% { transform: scaleY(0.4); opacity: 0.5; }
-      50%       { transform: scaleY(1);   opacity: 1;   }
+      50%       { transform: scaleY(1);   opacity: 1; }
     }
 
-    .footer-note {
-      margin-top: 2rem;
-      font-size: 0.73rem;
-      color: rgba(139,137,160,0.5);
-    }
+    .footer-note { margin-top: 2rem; font-size: 0.73rem; color: rgba(139,137,160,0.5); }
   </style>
 </head>
 <body>
   <div class="card">
     <div class="avatar-ring">🤖</div>
-
     <h1>Chat with Abhijeet's AI</h1>
     <p>Ask me anything about Abhijeet's projects,<br>skills, or experience — just click and speak.</p>
 
@@ -214,72 +164,74 @@
       <span></span><span></span><span></span><span></span><span></span>
     </div>
 
-    <span id="status">Click to begin</span>
-
+    <span id="status">Loading...</span>
     <p class="footer-note">Powered by Vapi AI · Built by Abhijeet</p>
   </div>
 
-  <script>
-    (function(d, t) {
-      var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
-      g.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
-      g.defer = true;
-      g.async = true;
-      s.parentNode.insertBefore(g, s);
-      g.onload = function() { initVapi(); };
-    })(document, 'script');
+  <!-- Load Vapi SDK via unpkg (more reliable) -->
+  <script src="https://unpkg.com/@vapi-ai/web@latest/dist/vapi.js"></script>
 
+  <script>
     var VAPI_PUBLIC_KEY = "701c97bc-a3c4-4aef-bd98-1ddf2682386e";
     var ASSISTANT_ID    = "48924dff-3df4-4c1c-8588-a13a6ba2dea6";
 
     var vapi = null;
     var callActive = false;
 
-    function initVapi() {
-      if (typeof window.Vapi === 'undefined') {
-        document.getElementById('status').textContent = 'Failed to load Vapi SDK.';
-        return;
-      }
-      vapi = new window.Vapi(VAPI_PUBLIC_KEY);
-
-      vapi.on('call-start',  function() { setActive(true);  });
-      vapi.on('call-end',    function() { setActive(false); });
-      vapi.on('error',       function(e) {
-        console.error('Vapi error:', e);
-        setActive(false);
-        document.getElementById('status').textContent = 'Something went wrong. Try again.';
-      });
+    function setStatus(msg, cls) {
+      var el = document.getElementById('status');
+      el.textContent = msg;
+      el.className = cls || '';
     }
 
+    window.addEventListener('load', function () {
+      try {
+        if (typeof Vapi === 'undefined') {
+          setStatus('SDK unavailable. Please refresh.', 'error');
+          return;
+        }
+        vapi = new Vapi(VAPI_PUBLIC_KEY);
+        setStatus('Ready — click to begin');
+
+        vapi.on('call-start', function () { setActive(true); });
+        vapi.on('call-end',   function () { setActive(false); });
+        vapi.on('error', function (e) {
+          console.error('Vapi error:', e);
+          setActive(false);
+          setStatus('Something went wrong. Try again.', 'error');
+        });
+      } catch(err) {
+        console.error(err);
+        setStatus('Initialisation failed: ' + err.message, 'error');
+      }
+    });
+
     function toggleCall() {
-      if (!vapi) { alert('Vapi SDK is still loading. Please wait a moment.'); return; }
+      if (!vapi) { setStatus('Still loading, please wait…', 'error'); return; }
       if (callActive) {
         vapi.stop();
       } else {
-        document.getElementById('status').textContent = 'Connecting…';
+        setStatus('Connecting…');
         vapi.start(ASSISTANT_ID);
       }
     }
 
     function setActive(active) {
       callActive = active;
-      var btn    = document.getElementById('vapi-btn');
-      var label  = document.getElementById('btn-label');
-      var wave   = document.getElementById('wave');
-      var status = document.getElementById('status');
+      var btn   = document.getElementById('vapi-btn');
+      var label = document.getElementById('btn-label');
+      var wave  = document.getElementById('wave');
 
       if (active) {
         btn.classList.add('active');
         label.textContent = 'End Call';
         wave.classList.add('visible');
-        status.textContent = 'Listening…';
-        status.classList.add('live');
+        setStatus('Listening…', 'live');
       } else {
         btn.classList.remove('active');
         label.textContent = 'Start Conversation';
         wave.classList.remove('visible');
-        status.textContent = 'Click to begin';
-        status.classList.remove('live');
+        setStatus('Ready — click to begin');
       }
     }
   </script>
