@@ -3,82 +3,77 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Floating VAPI Voice Bot</title>
+    <title>Voice Bot</title>
+</head>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background: #f8f8f8;
-            padding-top: 40px;
-        }
+<body style="font-family: Arial, sans-serif;">
 
-        h1 {
-            color: #333;
-        }
+    <h1>Welcome to My Voice Bot Page</h1>
+    <p>Click the floating mic widget to start.</p>
 
-        /* Floating Voice Button */
-        #voiceWidget {
+    <!-- 🎤 Floating Voice Widget -->
+    <div id="voiceWidget" 
+        style="
             position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 70px;
-            height: 70px;
-            background: #0078ff;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #ff4757;
+            color: white;
+            font-size: 28px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
             cursor: pointer;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.25);
-            transition: transform 0.2s ease, background 0.2s ease;
-        }
+            z-index: 9999;
+        ">
+        🎤
+    </div>
 
-        #voiceWidget:hover {
-            transform: scale(1.1);
-            background: #005fcc;
-        }
-    </style>
-</head>
-
-<body>
-
-    <h1>🎤 Floating Voice Assistant</h1>
-    <p>Tap the floating button at the bottom-right to start the bot.</p>
-
-    <!-- Floating Voice Bot Widget -->
-    <div id="voiceWidget">🎤</div>
-
-    <!-- Load VAPI SDK -->
-    <script src="https://cdn.vapi.ai/vapi.js"></script>
-
+    <!-- 🎤 Voice Script -->
     <script>
-        const assistantId = "48924dff-3df4-4c1c-8588-a13a6ba2dea6";
+        let recognition;
 
-        window.vapi.onReady(() => {
-            console.log("VAPI Ready");
+        document.getElementById("voiceWidget").addEventListener("click", async () => {
+            try {
+                console.log("Requesting microphone permission...");
 
-            // UPDATED CLICK HANDLER WITH FORCED MICROPHONE PERMISSION
-            document.getElementById("voiceWidget").onclick = async () => {
-                try {
-                    // Force mic permission popup
-                    await navigator.mediaDevices.getUserMedia({ audio: true });
+                // MUST be in click handler — triggers permission popup
+                await navigator.mediaDevices.getUserMedia({ audio: true });
 
-                    console.log("Mic permission granted. Starting bot...");
+                console.log("Microphone permission granted!");
 
-                    // Start VAPI bot
-                    window.vapi.start({
-                        assistantId: assistantId,
-                        startMuted: false
-                    });
+                const SpeechRecognition =
+                    window.SpeechRecognition || window.webkitSpeechRecognition;
 
-                } catch (err) {
-                    console.error("Mic blocked:", err);
-                    alert("Microphone access is required. Please allow it.");
-                }
-            };
+                recognition = new SpeechRecognition();
+                recognition.continuous = true;
+                recognition.interimResults = false;
+                recognition.lang = "en-US";
+
+                recognition.start();
+
+                recognition.onstart = () => {
+                    console.log("🎤 Voice bot started...");
+                };
+
+                recognition.onresult = (event) => {
+                    const transcript =
+                        event.results[event.results.length - 1][0].transcript;
+                    console.log("User said:", transcript);
+                };
+
+                recognition.onerror = (err) => {
+                    console.error("Speech recognition error:", err);
+                };
+
+            } catch (err) {
+                console.error("Microphone access denied or blocked:", err);
+                alert("⚠️ Please allow microphone access to use the voice bot.");
+            }
         });
     </script>
 
